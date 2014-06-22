@@ -25,8 +25,12 @@ tidy_data <- function()
   
   ## combine training and test data sets
   alldata <- rbind(train_mean_std, test_mean_std)
+  colnames(alldata) <- gsub("[.]","",names(alldata))
+  colnames(alldata) <- tolower(names(alldata))
   
   ## aggregate by activity and subject, computing mean
-  all_aggs <- aggregate(x=alldata[3:88], by=list("Activity"=alldata$activity, "Subject"=alldata$subject), FUN="mean")
+  all_aggs <- aggregate(x=alldata[3:88], by=list("activity"=alldata$activity, "subject"=alldata$subject), FUN="mean")
+  write.csv(all_aggs, file="tidy_data_project1.txt")
   all_aggs
+  
 }
