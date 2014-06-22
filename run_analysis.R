@@ -28,4 +28,5 @@ tidy_data <- function()
   
   ## aggregate by activity and subject, computing mean
   all_aggs <- aggregate(x=alldata[3:88], by=list("Activity"=alldata$activity, "Subject"=alldata$subject), FUN="mean")
+  all_aggs
 }
